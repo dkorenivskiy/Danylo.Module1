@@ -11,7 +11,9 @@ namespace Danylo.Module1
 
         public void Add(string name, int quantity)
         {
-            var id = Find(name);
+            int id = -1;
+            if (_products[0] != null)
+                id = Find(name);
 
             if (id == -1)
             {
@@ -27,6 +29,7 @@ namespace Danylo.Module1
             }
             else
             {
+                Console.WriteLine("Element with this name is already exist. Your entered quantity is added to existed item");
                 _products[id].Add(quantity);
             }
         }
@@ -54,12 +57,21 @@ namespace Danylo.Module1
 
         public void Show()
         {
+            if(_products[0] == null)
+            {
+                Console.WriteLine("Store is empty");
+                return;
+            }
+
             //TODO: check MSDN to fromat output string
-            Console.WriteLine("Id\tName\tQuntity");
+            Console.WriteLine("{0, 10}, {1, 10}, {2, 10}", "Id", "Name", "Quntity");
 
             foreach (var product in _products)
             {
-                product.Show();
+                if (product != null)
+                    product.Show();
+                else
+                    return;
             }
         }
 
@@ -67,8 +79,15 @@ namespace Danylo.Module1
         {
             for(var i = 0; i < _products.Length; ++i)
             {
-                if (_products[i].Name.Equals(name, StringComparison.OrdinalIgnoreCase))
-                    return i;
+                if (_products[i] != null)
+                {
+                    if (_products[i].Name.Equals(name, StringComparison.OrdinalIgnoreCase))
+                        return i;
+                }
+                else
+                {
+                    return -1;
+                }    
             }
 
             return -1;

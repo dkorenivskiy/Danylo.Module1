@@ -29,7 +29,7 @@ namespace Danylo.Module1
 
         public void Show()
         {
-            Console.WriteLine($"{Id}\t{Name}\t{Quantity}");
+            Console.WriteLine("{0, 10}, {1, 10}, {2, 10}", Id, Name, Quantity);
         }
     }
 }
