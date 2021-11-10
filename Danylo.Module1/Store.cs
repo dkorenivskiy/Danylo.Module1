@@ -37,13 +37,13 @@ namespace Danylo.Module1
 
             if (id == -1)
             {
-                Console.WriteLine("Item is not found in storel");
+                Console.WriteLine("Item is not found in store.");
             }
             else
             {
                 if (_products[id].Quantity < quantity)
                 {
-                    Console.WriteLine("Invalid operation");
+                    Console.WriteLine("Invalid operation.");
                 }
                 else
                 {
@@ -54,6 +54,7 @@ namespace Danylo.Module1
 
         public void Show()
         {
+            //TODO: check MSDN to fromat output string
             Console.WriteLine("Id\tName\tQuntity");
 
             foreach (var product in _products)
